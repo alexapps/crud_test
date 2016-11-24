@@ -4,14 +4,12 @@ import org.alexapps.catalogue.model.User;
 import org.alexapps.catalogue.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -35,12 +33,30 @@ public class ControllerUser {
     }
 
     @RequestMapping(value = { "/", "/listUsers" })
-    public String listUsers(Model model) {
-        List<User> list = userService.listUsers();
-        int age = list.get(0).getAge();
-        model.addAttribute("age", age);
+    public String listUsers(@RequestParam(required = false) Integer page, Model model) {
+
+
         model.addAttribute("user", new User());
         model.addAttribute("userList", userService.listUsers());
+/*
+        PagedListHolder<User> pagedListHolder = new PagedListHolder<User>(this.userService.listUsers());
+        pagedListHolder.setPageSize(5);
+        model.addAttribute("maxPages", pagedListHolder.getPageCount());
+
+        if (page==null || page < 1 || page > pagedListHolder.getPageCount())
+            page=1;
+        model.addAttribute("page", page);
+
+        if (page == null || page < 1 || page > pagedListHolder.getPageCount()) {
+            pagedListHolder.setPage(0);
+            model.addAttribute("userList", pagedListHolder.getPageList());
+        }
+        else if(page <= pagedListHolder.getPageCount()) {
+            pagedListHolder.setPage(page - 1);
+            model.addAttribute("userList", pagedListHolder.getPageList());
+        }
+
+*/
         //map.put("user", new User());
 
         //map.put("userList", userService.listUsers());

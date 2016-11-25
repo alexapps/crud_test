@@ -81,11 +81,11 @@
                    <td><c:out value="${userItem.createdDate}" /></td>
                    <td>
                      <nobr>
-                        <button onclick="editUser(${user.id});">
+                        <button onclick="editUser(${userItem.id});">
                            <i>Edit</i>
                         </button>
 
-                        <a href="delete/${user.id}"
+                        <a href="delete/${userItem.id}"
                    onclick="return confirm('Are you sure you want to delete this user?');">
                              <i></i>Delete
                         </a>

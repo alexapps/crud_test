@@ -92,7 +92,7 @@
 
   </dependencies>
   <build>
-    <finalName>catalogue</finalName>
+    <finalName>crud_test</finalName>
     <plugins>
 
       <!-- Tomcat 7 plugin -->
